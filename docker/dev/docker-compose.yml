@@ -1,0 +1,13 @@
+services:
+  python-rag-app:
+    build:
+        # context starts in root folder
+        context: ../../
+        dockerfile: docker/dev/python/Dockerfile
+    volumes:
+      - ../../:/python-app
+    working_dir: /python-app/python-app
+    # command: sh -c "uv sync --locked && sleep infinity"
+    command: sh -c "sleep infinity"
+    ports:
+      - "8001:8001"
