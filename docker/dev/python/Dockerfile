@@ -8,11 +8,15 @@ COPY python-app/ .
 
 ENV UV_PROJECT_ENVIRONMENT=/usr/local
 
-# Install build tools and Python packages
+# Install system dependencies and Python tools
 RUN apt-get update && apt-get install -y --no-install-recommends \
     build-essential \
     curl \
+    libmagic-dev \
+    poppler-utils \
+    tesseract-ocr \
+    libgl1 \
     && pip install --upgrade pip \
-    #dev libraries
-    && pip install uv\
+    && pip install uv \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
+
