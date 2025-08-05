@@ -15,8 +15,10 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     libmagic-dev \
     poppler-utils \
     tesseract-ocr \
-    libgl1 \
-    && pip install --upgrade pip \
+    libgl1 
+
+RUN pip install --upgrade pip \
     && pip install uv \
-    && apt-get clean && rm -rf /var/lib/apt/lists/*
+    && apt-get clean && rm -rf /var/lib/apt/lists/* \
+    && pip install ipykernel -U --user --force-reinstall
 

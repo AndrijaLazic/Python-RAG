@@ -46,7 +46,8 @@
 				"charliermarsh.ruff",
 				"ms-python.mypy-type-checker",
 				"aaron-bond.better-comments",
-				"kevinkyang.auto-comment-blocks"
+				"kevinkyang.auto-comment-blocks",
+				"ms-toolsai.jupyter"
 			]
 		}
 	}
