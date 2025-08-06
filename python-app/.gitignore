@@ -14,7 +14,7 @@ env/
 
 # Environment variable and secrets files
 *.env
-.env.*
+.env
 
 # IDE/editor settings
 .vscode/
@@ -46,3 +46,4 @@ Thumbs.db
 
 
 /Data/Input
+/Data/Output

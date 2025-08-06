@@ -10,3 +10,42 @@ services:
     command: sh -c "uv sync --locked && sleep infinity"
     ports:
       - "8002:8002"
+  n8n:
+    image: n8nio/n8n:latest
+    container_name: n8n
+    restart: always
+    ports:
+      - "5678:5678"
+    volumes:
+      - ./n8n-data:/home/node/.n8n
+    environment:
+      # basic auth (poželjno)
+      - N8N_BASIC_AUTH_ACTIVE=true
+      - N8N_BASIC_AUTH_USER=admin
+      - N8N_BASIC_AUTH_PASSWORD=changeme
+      # eksplicitno SQLite
+      - DB_TYPE=sqlite
+      - DB_SQLITE_DATABASE=/home/node/.n8n/database.sqlite
+    extra_hosts:
+      - "host.docker.internal:host-gateway"  
+  qdrant:
+    image: qdrant/qdrant:latest
+    container_name: qdrant
+    restart: unless-stopped
+    ports:
+      # HTTP REST API
+      - "6333:6333"
+      # gRPC API (optional)
+      - "6334:6334"
+    volumes:
+      # Persist all collections, indexes and WAL logs
+      - qdrant_data:/qdrant/storage
+    environment:
+      - QDRANT__LOG_LEVEL=info
+      - QDRANT__STORAGE__WAL_LOG_PATH=/qdrant/storage/wal.log
+
+volumes:
+  qdrant_data:
+    driver: local
+  n8n-data:
+    driver: local
