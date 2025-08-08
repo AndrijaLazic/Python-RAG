@@ -15,7 +15,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     libmagic-dev \
     poppler-utils \
     tesseract-ocr \
-    libgl1 
+    libgl1 \
+    ocrmypdf
 
 RUN pip install --upgrade pip \
     && pip install uv \
